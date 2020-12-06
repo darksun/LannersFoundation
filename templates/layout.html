@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Lanners Foundation</title>
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<link rel="static/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+    <script>
+    /* When the user clicks on the button, toggle between hiding and showing the dropdown content */
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdwon if the user clicks outside of it //
+    window.onclick = function(event) {
+      if (!event.target.matches('.burglarBars')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+
+        for (i=0; i < dropdowns.length; i++) {
+
+          var openDropdown = dropdowns[i];
+
+          if (openDropdown.classList.contains('show')) {
+
+            openDropdown.classList.remove('show');
+
+          } 
+        }
+      }
+    }
+
+    </script>
+  </head>
+  <body style="background-color: white;">
+  <div class="topnav">
+    <a href="{{ url_for('welcome') }}">
+    <img src="{{ logo_image }}" class='logo' alt="Logo">
+    </a>  
+
+   <div class="dropdown">
+    <button onclick="myFunction()" class="dropbtn">
+      
+      <img src="{{ burglarBars }}" class="burglarBars">
+    
+    </button>
+    
+    <div id="myDropdown" class="dropdown-content">
+      <a href="{{ url_for('welcome') }}">Home</a>
+      <a href="{{ url_for('about') }}">About Us</a> 
+      <a href="{{ url_for('programs') }}">Programs</a>
+      <a href="{{ url_for('GrantInfo') }}">Grant Info</a>
+      <a href="{{ url_for('contact') }}">Contact Us</a>
+      <a href="{{ url_for('PF990') }}">990PF</a>
+      <a href="{{ url_for('members') }}">Members</a>
+    </div>
+  </div>
+
+  <a class="but" href="{{ url_for('members') }}">Members</a>
+  <a class="but" href="{{ url_for('PF990') }}">990PF</a>
+  <a class="but" href="{{ url_for('contact') }}">Contact Us</a>
+  <a class="but" href="{{ url_for('GrantInfo') }}">Grant Info</a>
+  <a class="but" href="{{ url_for('programs') }}">Programs</a>
+  <a class="but" href="{{ url_for('about') }}">About Us</a>
+  <a class="but" href="{{ url_for('welcome') }}">Home</a>
+  </div>
+
+  {% block content %}{% endblock %}
+
+</body>
+</html>
+
+
