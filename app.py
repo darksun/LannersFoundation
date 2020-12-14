@@ -1,5 +1,6 @@
 # import the Flask class from the flask module
 from flask import Flask, render_template, redirect, url_for, request
+from flask_basicauth import BasicAuth
 import os
 
 PEOPLE_FOLDER = os.path.join('static', 'Images')
@@ -14,6 +15,10 @@ app = Flask(__name__)
 #     return response
 
 app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
+app.config['BASIC_AUTH_USERNAME'] = 'member'
+app.config['BASIC_AUTH_PASSWORD'] = 'foobar'
+
+basic_auth = BasicAuth(app)
 
 # use decorators to link the function to a url
 @app.route('/')
@@ -57,6 +62,7 @@ def PF990():
 	return render_template('PF990.html', logo_image = full_filenameLogo, burglarBars = burglarBars, pdf990_2017 = pdf990_2017, pdf990_2016 = pdf990_2016)
 
 @app.route('/members')
+@basic_auth.required
 def members():
 	full_filenameLogo = os.path.join(app.config['UPLOAD_FOLDER'],'HeaderLogo.png')
 	burglarBars = os.path.join(app.config['UPLOAD_FOLDER'],'burglarBars.png')
