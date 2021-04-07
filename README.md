@@ -1,8 +1,8 @@
-## Basic Auth
-### Installation
+## Installation
 
-Install the extension with pip:
+Self host the static pages using any simple http server. I used npm http-server
 ```sh
-$ pip install Flask-BasicAuth
+npm install http-server -g
+cd <directory>
+http-server
 ```
-View BasicAuth [docs](https://flask-basicauth.readthedocs.io/en/latest/)
